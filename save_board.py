@@ -20,6 +20,6 @@ def save_board(board, name):
             for char in line:
                 if char == "|":
                     continue
-                cv2.putText(img, str(char), (actual_char, actual_line), cv2.FONT_HERSHEY_COMPLEX, 3, (0,0,0))
+                cv2.putText(img, str(char), (actual_char, actual_line), cv2.FONT_HERSHEY_PLAIN, 5, (0,0,0), 5)
                 actual_char += gap
     cv2.imwrite("{}.png".format(str(name)), img)
