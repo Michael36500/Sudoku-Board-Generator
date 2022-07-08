@@ -5,8 +5,8 @@
 import random
 import copy
 import save_board
-from tqdm import tqdm
-
+import cv2
+import time
 #======Functions======
 #Text on startup
 def introduction():
@@ -78,7 +78,7 @@ def main(a):
         #Exit Input Loop
         else:
             difficulty = int(difficulty)
-            print()
+            # print()
             break
 
     #Parent Row
@@ -146,13 +146,17 @@ def main(a):
 #======Execution Check======
 if __name__ == '__main__':
     introduction()
-
+    bench = cv2.imread("benchmarking.png")
+    plate = cv2.imread("bench_back.png")
     play = True
 
     # while(play):
-    for a in tqdm(range(100)):
+    cv2.imshow("Benchmark", bench)
+    cv2.waitKey(100)
+    Start = time.time()
+    for a in range(1000):
         # print() # Spacer
-        
+
         main(a)
         # print() # Spacer
 
@@ -170,3 +174,8 @@ if __name__ == '__main__':
                 print("Input error.\n")
                 continue
             break # Exit input loop
+    Total = time.time() - Start
+    print(Total)
+    plate = cv2.putText(plate, str(Total), (30,400), cv2.FONT_HERSHEY_SCRIPT_COMPLEX, 6, (73, 177, 251), 2)
+    cv2.imshow("Benchmark", plate)
+    cv2.waitKey(0)
